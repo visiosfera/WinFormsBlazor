@@ -1,0 +1,26 @@
+﻿<h1>Applicativo</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="SaveFile">Salvar arquivo 'teste.txt' no c:/</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    private void SaveFile()
+    {
+        var directoryPath = "c:\\temp";
+        var fileName = "teste.txt";
+
+        if (!Directory.Exists(directoryPath))
+            Directory.CreateDirectory(directoryPath);
+
+        File.CreateText(Path.Combine(directoryPath, fileName));
+    }
+}
